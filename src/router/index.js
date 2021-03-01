@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Main from '../views/Main.vue'
-import Login from '../views/Login.vue'
-import Registration from '../views/Registration.vue'
-import Home from '../views/Home.vue'
-import NoPage from '../views/NoPage.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Main from '../views/Main.vue';
+import Login from '../views/Login.vue';
+import Registration from '../views/Registration.vue';
+import Home from '../views/Home.vue';
+import NoPage from '../views/NoPage.vue';
 import Cookies from 'js-cookie';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
     {
