@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { url } from './config';
 
 export const authService = {
     signup,
@@ -22,7 +23,7 @@ async function signup(data) {
         },
         body: JSON.stringify(data)
     };
-    let res = await fetch(`http://127.0.0.1:8000/api/auth/signup`, requestOptions);
+    let res = await fetch(`${url}/api/auth/signup`, requestOptions);
     let signup =  await res.json();
     return signup;
 }
@@ -42,7 +43,7 @@ async function login(data) {
         },
         body: JSON.stringify(data)
     };
-    let res = await fetch(`http://127.0.0.1:8000/api/auth/login`, requestOptions);
+    let res = await fetch(`${url}/api/auth/login`, requestOptions);
     let login =  await res.json();
     return login;
 }
@@ -59,7 +60,7 @@ async function logout() {
             'Authorization' : 'Bearer' + ' ' + Cookies.get('token')
         },
     };
-    let res = await fetch(`http://127.0.0.1:8000/api/auth/logout`, requestOptions);
+    let res = await fetch(`${url}/api/auth/logout`, requestOptions);
     let logout =  await res.json();
     return logout;
 }
@@ -76,7 +77,7 @@ async function getMe() {
             'Authorization' : 'Bearer' + ' ' + Cookies.get('token')
         }
     };
-    let res = await fetch(`http://127.0.0.1:8000/api/auth/user`, requestOptions);
+    let res = await fetch(`${url}/api/auth/user`, requestOptions);
     let user =  await res.json();
     return user;
 }
