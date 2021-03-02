@@ -4,6 +4,7 @@
             <router-link to="/login">Вхід</router-link> /
             <router-link to="/registration">Реєстрація</router-link>
         </div>
+        <b-img :src="`${url1}${me.avatar_url}`"></b-img>
         <b-button class="btn-form" variant="secondary" @click.prevent="logout" v-if="token">Вийти</b-button>
     </div>
 </template>
@@ -11,11 +12,13 @@
 <script>
 import { authService } from '../services';
 import Cookies from 'js-cookie';
+import { url } from '../services/config';
 
 	export default {
         data() {
             return {
-                token: ''
+                token: '',
+                url1: url
             }
         },
         created() {
