@@ -2,7 +2,8 @@ import { url } from './config';
 import Cookies from 'js-cookie';
 
 export const postService = {
-    addPost
+    addPost,
+    getPosts
 };
 
 /**
@@ -24,4 +25,24 @@ async function addPost(data) {
     let res = await fetch(`${url}/api/auth/posts`, requestOptions)
     let post =  await res.json()
     return post;
+}
+
+
+/**
+ * Get posts from server
+ * 
+ * @returns {Object}
+ */
+async function getPosts() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    };
+
+    let res = await fetch(`${url}/api/posts`, requestOptions)
+    let posts =  await res.json()
+    return posts;
 }
