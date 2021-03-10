@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="main-container">
         <Posts/>
     </main>
 </template>
@@ -16,5 +16,10 @@ export default {
 </script>
 
 <style>
+.main-container {
+    background: linear-gradient(#cec5f1, #fca468);
+    min-height: calc(100vh - 90px);
+    padding: 20px 20px 30px;
+}
 
 </style>

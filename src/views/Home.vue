@@ -16,6 +16,7 @@ Quill.register(Quill.import('attributors/style/align'), true);
 var SizeStyle = Quill.import('attributors/style/size');
 Quill.register(SizeStyle, true);
 import { postService } from '../services';
+import moment from 'moment';
 
 export default {
     components: {
@@ -43,7 +44,8 @@ export default {
     },
     methods: {
         saveContent() {
-            postService.addPost({content: this.content}).then((res) => {
+            var now = moment();
+            postService.addPost({content: this.content, date: now.format('DD-MM-YYYY - HH:mm:ss')}).then((res) => {
                 if (res.status == 'OK') {
                     this.$swal({
                         icon: 'success',
@@ -68,7 +70,7 @@ export default {
 <style>
 .home-container {
     background: linear-gradient(#cec5f1, #fca468);
-    height: calc(100vh - 90px);
+    min-height: calc(100vh - 90px);
     display: grid;
     justify-content: center;
     align-items: start;
@@ -85,6 +87,10 @@ export default {
 }
 .quillWrapper, .ql-container {
     background: white;
+    box-shadow: 0 1px 4px rgba(94, 92, 92, .2),
+                -23px 0 20px -23px rgba(94, 92, 92, .2),
+                23px 0 20px -23px rgba(94, 92, 92, 0.2),
+                inset 0 0 40px rgba(94, 92, 92, 0.1);
 }
 .btn-container-editor {
     margin-top: 30px;

@@ -40,6 +40,9 @@ import { url } from '../services/config';
         },
         computed: {
 			me() { 
+                if (this.$route.path == '/' && document.getElementsByClassName('user-block')[0]) {
+                    document.getElementsByClassName('user-block')[0].classList.add('user-block-main');
+                }
                 return this.$store.getters.getMe; 
             }
 		},
@@ -94,6 +97,9 @@ a:hover {
     display: none;
     z-index: 1;
     box-sizing: border-box;
+}
+.user-block-main {
+    right: 97px;
 }
 .user-block:before {
     position: absolute;
