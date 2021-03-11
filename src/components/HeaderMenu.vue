@@ -4,7 +4,7 @@
             <router-link to="/login">Вхід</router-link> /
             <router-link to="/registration">Реєстрація</router-link>
         </div>
-        <div v-else>
+        <div v-else class="user-info">
             <b-img class="user-avatar" :src="`${url1}${me.avatar_url}`"></b-img>
             <div class="user-block">
                 <ul class="user-menu">
@@ -40,18 +40,17 @@ import { url } from '../services/config';
         },
         computed: {
 			me() { 
-                if (this.$route.path == '/' && document.getElementsByClassName('user-block')[0]) {
-                    document.getElementsByClassName('user-block')[0].classList.add('user-block-main');
-                }
                 return this.$store.getters.getMe; 
             }
 		},
         methods: {
             logout() {
+                this.$store.commit('SET_SPINNER', true);
                 authService.logout().then(res => {
                     if (res.message == 'Successfully logged out') {
                         Cookies.remove('token');
                         window.location.assign('/');
+                        this.$store.commit('SET_SPINNER', false);
                     }
                 })
             }
@@ -85,21 +84,21 @@ a:hover {
 .user-avatar:hover ~ div{
 	display: block;
 }
+.user-info {
+	position: relative;
+}
 .user-block {
     width: 200px;
     height: 150px;
     border: none;
     border-radius: 15px;
     position: absolute;
-    right: 106px;
+    right: -62px;
     margin-top: 24px;
     background: linear-gradient(#fca468, #cec5f1);
     display: none;
     z-index: 1;
     box-sizing: border-box;
-}
-.user-block-main {
-    right: 97px;
 }
 .user-block:before {
     position: absolute;
