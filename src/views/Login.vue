@@ -81,8 +81,10 @@ import Cookies from 'js-cookie';
                 if( !this.validationEmail || !this.validationPassword ){
                     return; 
                 } 	
+                this.$store.commit('SET_SPINNER', true);
                 authService.login({email: this.email, password: this.password, remember_me: this.remember_me}).then((res) => {
                     if(res.access_token){
+                        this.$store.commit('SET_SPINNER', false);
                         Cookies.set('token', `${res.access_token}`);
                         window.location.assign('/home');
                     }else {

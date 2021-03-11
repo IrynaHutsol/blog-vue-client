@@ -120,9 +120,11 @@ import { authService } from '../services';
                 }
                 if (!this.validationName || !this.validationEmail || !this.validationPassword || this.equalityPassword) {
                     return; 
-                } 	
+                } 
+                this.$store.commit('SET_SPINNER', true);	
                 authService.signup({name: this.name, email: this.email, password: this.password, password_confirmation: this.password_confirm}).then((res) => {
                     if (res.message == 'Successfully created user!') {
+                        this.$store.commit('SET_SPINNER', false);
                         this.name = '';
                         this.email = '';
                         this.password = '';
