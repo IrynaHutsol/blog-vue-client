@@ -1,5 +1,6 @@
 <template>
 	<div id="app">
+		<Spinner v-if="active"></Spinner>
 		<Header/>
 		<router-view/>
 	</div>
@@ -8,10 +9,17 @@
 <script>
 // @ is an alias to /src
 import Header from '@/views/Header.vue'
+import Spinner from '@/views/Spinner.vue'
 
 export default {
 	components: {
-		Header
+		Header,
+		Spinner
+	},
+	computed:{
+		active() {
+			return this.$store.getters.spinner;
+		}
 	}
 }
 </script>
