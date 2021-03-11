@@ -44,9 +44,11 @@ export default {
     },
     methods: {
         saveContent() {
+            this.$store.commit('SET_SPINNER', true);
             var now = moment();
             postService.addPost({content: this.content, date: now.format('DD-MM-YYYY - HH:mm:ss')}).then((res) => {
                 if (res.status == 'OK') {
+                    this.$store.commit('SET_SPINNER', false);
                     this.$swal({
                         icon: 'success',
                         title: 'Вітаємо!',
