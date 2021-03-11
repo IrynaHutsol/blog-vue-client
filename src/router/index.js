@@ -5,6 +5,7 @@ import Login from '../views/Login.vue';
 import Registration from '../views/Registration.vue';
 import Home from '../views/Home.vue';
 import NoPage from '../views/NoPage.vue';
+import Post from '../components/Post.vue';
 import Cookies from 'js-cookie';
 
 Vue.use(VueRouter);
@@ -14,6 +15,11 @@ const routes = [
         path: '/',
         name: 'Main',
         component: Main
+    },
+    {
+        path: '/post/:id',
+        name: 'Post',
+        component: Post
     },
     {
         path: '/login',

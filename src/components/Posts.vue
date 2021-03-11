@@ -8,7 +8,7 @@
                 </div>
                 <div class="content-container">
                     <div class="text-post-container" v-html="post.content"></div>
-                    <div class="read-more"><a href="">Читати повністю</a></div>
+                    <div class="read-more" @click="postId(post)"><a>Читати повністю</a></div>
                 </div>
             </div>
             <div class="user-post">
@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { postService } from '../services';
 import { url } from '../services/config';
 
     export default {
@@ -41,10 +40,13 @@ import { url } from '../services/config';
         },
         created() {
             this.$store.dispatch('GET_ME');
-            postService.getPosts().then((res) => {
+            this.$store.commit('SET_SPINNER', true)
+            this.$store.dispatch('GET_POSTS').then((res) => {
                 if(res) {
+                    this.$store.commit('SET_SPINNER', false)
                     this.posts = res.map(post => {
                         return {
+                            post_id: post.id,
                             user_id: post.user.id,
                             image: post.content.match(/<img[^>]*\/?>/g),
                             content: post.content.replace(/<p><img[^>]*><\/p>/g,"").split('</p>').slice(0,1)[0],
@@ -55,6 +57,11 @@ import { url } from '../services/config';
                     })
                 }     
             })
+        },
+        methods: {
+            postId(post) {
+                return this.$router.push("/post/" + post.post_id)
+            }
         }
     }
 </script>
@@ -120,7 +127,8 @@ import { url } from '../services/config';
 .read-more a {
     font-size: 15px;
     font-weight: 400;
-    color: #999;
+    color: #999 !important;
+    cursor: pointer;
 }
 .read-more a:hover {
     color: orangered !important;

@@ -3,7 +3,8 @@ import Cookies from 'js-cookie';
 
 export const postService = {
     addPost,
-    getPosts
+    getPosts,
+    getPost
 };
 
 /**
@@ -45,4 +46,24 @@ async function getPosts() {
     let res = await fetch(`${url}/api/posts`, requestOptions)
     let posts =  await res.json()
     return posts;
+}
+
+/**
+ * Get post by id from server
+ * 
+ * @param {Object} id 
+ * @returns {Object}
+ */
+ async function getPost(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    };
+
+    let res = await fetch(`${url}/api/posts/${id}`, requestOptions)
+    let post =  await res.json()
+    return post;
 }
