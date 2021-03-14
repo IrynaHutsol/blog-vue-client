@@ -148,6 +148,7 @@ import { authService } from '../services';
                             title: 'Oops...',
                             text: 'Помилка сервера! Спробуйте, будь ласка, пізніше'
                         })
+                        this.$store.commit('SET_SPINNER', false);
                     }
 				})
 			},

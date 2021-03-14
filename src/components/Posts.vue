@@ -16,7 +16,7 @@
                     <b-img :src="`${url1}${post.user_avatar}`"></b-img>
                 </div>
                 <div class="user-post-surname-date">
-                    <div class="user-surname">
+                    <div class="unc">
                         {{post.user_name}}
                     </div>
                     <div class="post-date">
@@ -30,6 +30,7 @@
 
 <script>
 import { url } from '../services/config';
+import Cookies from 'js-cookie';
 
     export default {
         data() {
@@ -39,7 +40,9 @@ import { url } from '../services/config';
             }
         },
         created() {
-            this.$store.dispatch('GET_ME');
+            if (Cookies.get('token')) {
+                this.$store.dispatch('GET_ME');
+            }
             this.$store.commit('SET_SPINNER', true)
             this.$store.dispatch('GET_POSTS').then((res) => {
                 if(res) {

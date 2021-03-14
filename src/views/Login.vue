@@ -86,13 +86,14 @@ import Cookies from 'js-cookie';
                     if(res.access_token){
                         this.$store.commit('SET_SPINNER', false);
                         Cookies.set('token', `${res.access_token}`);
-                        window.location.assign('/home');
+                        window.location.assign('/');
                     }else {
                         this.$swal({
                             icon: 'warning',
                             title: 'Oops...',
                             text: 'Повторіть спробу! Не правильний email або пароль.'
                         })
+                        this.$store.commit('SET_SPINNER', false);
                     }
 				})
 			},

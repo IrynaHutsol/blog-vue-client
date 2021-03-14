@@ -5,14 +5,12 @@
             <router-link to="/registration">Реєстрація</router-link>
         </div>
         <div v-else class="user-info">
+            <router-link to="/home" class="write-post">Написати статтю</router-link>
             <b-img class="user-avatar" :src="`${url1}${me.avatar_url}`"></b-img>
             <div class="user-block">
                 <ul class="user-menu">
                     <router-link to="/profile"><li>
-                        <a href="">Профіль</a>
-                    </li></router-link>
-                    <router-link to="/myposts"><li>
-                        <a href="">Мої статті</a>
+                        <a href="">Мій профіль</a>
                     </li></router-link>
                     <li>
                         <a @click="logout" class="logout">Вийти</a>
@@ -89,7 +87,7 @@ a:hover {
 }
 .user-block {
     width: 200px;
-    height: 150px;
+    height: 110px;
     border: none;
     border-radius: 15px;
     position: absolute;
@@ -129,5 +127,14 @@ a:hover {
     color: #ffecac;
     text-decoration: none;
     cursor: pointer;
+}
+.write-post {
+    margin-right: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #fb7842;
+}
+.write-post:hover {
+    color: #89929b;
 }
 </style>
