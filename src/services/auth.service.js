@@ -5,7 +5,8 @@ export const authService = {
     signup,
     login,
     logout,
-    getMe
+    getMe,
+    sendEmail
 };
 
 /**
@@ -80,4 +81,24 @@ async function getMe() {
     let res = await fetch(`${url}/api/auth/user`, requestOptions);
     let user =  await res.json();
     return user;
+}
+
+/**
+ * Send email 
+ * 
+ * @param {Object} data 
+ * @returns {Object}
+ */
+ async function sendEmail(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 
+            'Authorization' : 'Bearer' + ' ' + Cookies.get('token'),
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify(data)
+    };
+    let res = await fetch(`${url}/api/auth/send/email`, requestOptions);
+    let sendEmail =  await res.json();
+    return sendEmail;
 }

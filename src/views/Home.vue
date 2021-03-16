@@ -54,7 +54,7 @@ export default {
                         title: 'Вітаємо!',
                         text: 'Вашу статтю успішно збережено!'
                     }).then(() => {
-                        this.$router.push({path:'/myposts'});
+                        this.$router.push({path:'/'});
                     })
                 }else {
                     this.$swal({

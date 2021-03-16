@@ -6,6 +6,7 @@ import Registration from '../views/Registration.vue';
 import Home from '../views/Home.vue';
 import NoPage from '../views/NoPage.vue';
 import Post from '../components/Post.vue';
+import Profile from '../views/Profile.vue';
 import Cookies from 'js-cookie';
 
 Vue.use(VueRouter);
@@ -35,6 +36,11 @@ const routes = [
         path: '/home',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile
     },
     {
         path: '/*/',

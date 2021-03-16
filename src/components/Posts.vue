@@ -58,12 +58,13 @@ import Cookies from 'js-cookie';
                             date: post.date
                         }
                     })
+                    this.posts.reverse();
                 }     
             })
         },
         methods: {
             postId(post) {
-                return this.$router.push("/post/" + post.post_id)
+                return this.$router.push("/post/" + post.post_id);
             }
         }
     }
